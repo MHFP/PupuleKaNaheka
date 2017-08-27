@@ -1,5 +1,8 @@
 //snake-object
 var snake = {
+    initialize: function(){
+      return initializeGrid();
+    },
     grid: [],
     orientation: 0,
     position: {
@@ -11,9 +14,29 @@ var snake = {
     },
     moveRight: function(){
       return moveRight();
-    }
+    },
+    counter: 0
 };
 
+//initialize game-grid
+function initializeGrid(){
+  if(snake.counter === 0){
+    snake.grid = gridComposer();
+    var position = randomPosition();
+    snake.grid[position[0]][position[1]] = 1;
+    snake.position.row = position[0];
+    snake.position.col = position[1];
+  }
+  return snake.grid;
+}
+
+//function to store moves on grid
+function movement(){
+  var positionX = snake.position.row;
+  var positionY = snake.position.col;
+  snake.grid[positionX][positionY] = 1;
+  return snake.grid;
+}
 
 //functions for snake-movement
 function moveForward(){
@@ -27,7 +50,8 @@ function moveForward(){
   } else {
     snake.position.col -=1;
   }
-  console.log(snake.position);
+  snake.counter +=1;
+  return snake.position;
 }
 
 function moveRight(){
@@ -45,6 +69,7 @@ function moveRight(){
   snake.position.row -= 2;
   snake.position.col += 1;
   }
+  snake.counter +=1;
   return snake.position;
 }
 
@@ -63,6 +88,7 @@ function moveLeft(){
   snake.position.row -= 2;
   snake.position.col -= 1;
   }
+  snake.counter +=1;
   return snake.position;
 }
 
