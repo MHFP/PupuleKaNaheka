@@ -1,0 +1,19 @@
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.gameBoard{
+  background-color: purple;
+  width: 500px;
+  height: 500px;
+
+}
+
+.cell{
+  width: 40px;
+  height: 40px;
+  background-color: grey;
+  margin: 5px;
+}
