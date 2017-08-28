@@ -16,6 +16,10 @@ Game.prototype.getGrid = function(){
   return getGrid();
 };
 
+Snake.prototype.randomPosition = function(){
+  return randomPosition();
+}
+
 var game = new Game();
 var snake = new Snake();
 
@@ -44,7 +48,7 @@ function randomPosition(){
   var position = [];
   position.push(positionX);
   position.push(positionY);
-  snake.currentPosition = position;
+  snake.position = position;
   snake.grid[position[0]][position[1]] = 1;
   return position;
 }
