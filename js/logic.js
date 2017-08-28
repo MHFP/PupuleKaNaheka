@@ -1,24 +1,27 @@
 function Game(){
   this.grid = [];
-  this.initialize = function(){
-    gridComposer();
-  };
 }
 
 function Snake(){
   Game.call(this);
-  this.randomPosition = function(){
-    return randomPosition();
-  };
-  this.currentPosition = [];
+  this.position = [];
+  this.body = [];
+  this.orientation = 0;
 }
+
+Snake.prototype = Object.create(Game.prototype);
+Snake.prototype.constructor = Snake;
+
+Game.prototype.getGrid = function(){
+  return getGrid();
+};
 
 var game = new Game();
 var snake = new Snake();
 
 
 var gameGrid = "";
-function gridComposer(){
+function getGrid(){
   var row = [];
   for(x=0; x<10; x++){
     var col = [];
@@ -33,6 +36,7 @@ function gridComposer(){
   document.getElementById('gameGrid').innerHTML = gameGrid;
   return row;
 }
+
 
 function randomPosition(){
   var positionX = Math.floor(Math.random() * snake.grid.length);
