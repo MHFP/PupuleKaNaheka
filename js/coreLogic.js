@@ -51,44 +51,53 @@ function moveForward(){
     snake.position.col -=1;
   }
   snake.counter +=1;
+  movement();
   return snake.position;
 }
 
 function moveRight(){
-  var orientation = turnRight();
+  moveForward();
+  moveForward();
+  right();
+}
+
+function right(){
+  var orientation = snake.orientation;
   if(orientation === 0){
-  snake.position.row += 1;
-  snake.position.col += 2;
-  } else if (orientation === 1) {
-  snake.position.row += 2;
-  snake.position.col -= 1 ;
-  } else if (orientation === 2) {
-  snake.position.row -= 1;
-  snake.position.col -= 2;
-  } else {
-  snake.position.row -= 2;
   snake.position.col += 1;
+  } else if (orientation === 1) {
+  snake.position.row += 1;
+  } else if (orientation === 2) {
+  snake.position.col -= 1;
+  } else {
+  snake.position.row -= 1;
   }
   snake.counter +=1;
+  orientation = turnRight();
+  movement();
   return snake.position;
 }
 
 function moveLeft(){
-  var orientation = turnLeft();
+  moveForward();
+  moveForward();
+  left();
+}
+
+function left(){
+  var orientation = snake.orientation;
   if(orientation === 0){
-  snake.position.row += 1;
-  snake.position.col -= 2;
-} else if (orientation === 3) {
-  snake.position.row += 2;
-  snake.position.col += 1;
-  } else if (orientation === 2) {
-  snake.position.row -= 1;
-  snake.position.col += 2;
-  } else {
-  snake.position.row -= 2;
   snake.position.col -= 1;
+} else if (orientation === 3) {
+  snake.position.row += 1;
+  } else if (orientation === 2) {
+  snake.position.col += 1;
+  } else {
+  snake.position.row -= 1;
   }
   snake.counter +=1;
+  orientation = turnLeft();
+  movement();
   return snake.position;
 }
 
@@ -144,7 +153,7 @@ function gridComposer(){
   var row = [];
   for(x=0; x<10; x++){
     var col = [];
-    for(j=0; j<5; j++){
+    for(j=0; j<10; j++){
       col.push(null);
     }
     row.push(col);
