@@ -30,6 +30,48 @@ function initializeGrid(){
   return snake.grid;
 }
 
+/*
+Snake.prototype.randomPosition = function(){
+  var positionX = Math.floor(Math.random() * snake.grid.length);
+  var positionY = Math.floor(Math.random() * snake.grid[0].length);
+  var position = [];
+  position.push(positionX);
+  position.push(positionY);
+  snake.position = position;
+  snake.grid[position[0]][position[1]] = 1;
+  return position;
+};
+*/
+
+
+//composition of grid
+var gameGrid = document.getElementById("gameGrid");
+function gridComposer(){
+  console.log("Im running !!!!");
+  var row = [];
+  var col = [];
+  for(y=0; y<10; y++){
+    for(x=0; x<10; x++){
+      col.push(null);
+      gameGrid += '<div class="cell" row="' + x + '" column="' + y + '">';
+    }
+    row.push(col);
+  }
+  return row;
+}
+
+//get random coordinates x and y on grid
+function randomPosition(){
+  var grid = gridComposer();
+  var positionX = Math.floor(Math.random() * grid.length);
+  var positionY = Math.floor(Math.random() * grid[0].length);
+  var position = [];
+  position.push(positionX);
+  position.push(positionY);
+  return position;
+}
+
+
 //function to store moves on grid
 function movement(){
   var positionX = snake.position.row;
@@ -140,37 +182,14 @@ function turnRight(){
   return snake.orientation;
 }
 
-//hold current grid data
-function updateGrid(){
-  var currentGrid = getPosition();
-  var position = movement();
-  currentGrid[position[0]][position[1]] = 1;
-  return currentGrid;
-}
+// //hold current grid data
+// function updateGrid(){
+//   var currentGrid = getPosition();
+//   var position = movement();
+//   currentGrid[position[0]][position[1]] = 1;
+//   return currentGrid;
+// }
 
-//composition of grid
-function gridComposer(){
-  var row = [];
-  for(x=0; x<10; x++){
-    var col = [];
-    for(j=0; j<10; j++){
-      col.push(null);
-    }
-    row.push(col);
-  }
-  return row;
-}
-
-//get random coordinates x and y on grid
-function randomPosition(){
-  var grid = gridComposer();
-  var positionX = Math.floor(Math.random() * grid.length);
-  var positionY = Math.floor(Math.random() * grid[0].length);
-  var position = [];
-  position.push(positionX);
-  position.push(positionY);
-  return position;
-}
 
 //timeIncrementation
 // var i = 5;

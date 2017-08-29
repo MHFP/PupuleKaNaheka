@@ -46,8 +46,12 @@ Game.prototype.drawSnake = function() {
 // ================= //
 function Snake() {
   this.headPosition = [];
+  this.direction = 'right';
   this.orientation = 0;
-  this.body = [];
+  this.body = [
+    {row: 6, column: 6},
+    {row: 7, column: 6},
+  ];
 
 }
 
@@ -61,12 +65,28 @@ Snake.prototype.body = function(){
 
 Snake.prototype.goLeft = function(){
 console.log("I'm going left");
+if (this.direction === 'up' || this.direction === 'down'){
+    this.direction = 'left';
+  }
 };
 
 Snake.prototype.goRight = function(){
   console.log("I'm going right");
+  if (this.direction === 'up' || this.direction === 'down'){
+    this.direction = 'right';
+  }
 };
 
-Snake.prototype.goForward = function(){
-  console.log("I'm going forward");
+Snake.prototype.goUp = function(){
+  console.log("I'm going up");
+  if (this.direction === 'left' || this.direction === 'right'){
+    this.direction = 'up';
+  }
+};
+
+Snake.prototype.goDown = function() {
+  console.log("I'm going down");
+  if (this.direction === 'left' || this.direction === 'right'){
+    this.direction = 'down';
+  }
 };

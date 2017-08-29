@@ -1,19 +1,36 @@
-.container{
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  font-size: 1rem;
+  min-height: 100%;
+}
+
+#gameGrid {
+  background-color: grey;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding: 1em;
+  width: 540px;
+  height: 550px;
 }
 
-.gameBoard{
-  background-color: purple;
-  width: 500px;
-  height: 500px;
-
+.cell {
+  border: 1px solid white;
+  background-color: red;
+  width: 10px;
+  height: 10px;
 }
 
-.cell{
-  width: 40px;
-  height: 40px;
-  background-color: grey;
-  margin: 5px;
+.cell[column="49"] {
+  background-color: blue;
+}
+
+.cell.snakeOne {
+  background-color: green;
 }
