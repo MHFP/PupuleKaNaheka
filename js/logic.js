@@ -1,54 +1,72 @@
-function Game(){
+// GAME CONSTRUCTOR //
+// ================ //
+function Game(rows, columns, numberOfSnakes){
   this.grid = [];
+  this.rows = rows;
+  this.columns = columns;
+  this.numberOfSnakes = numberOfSnakes;
+  this.snakes = [];
+
+  this.generateGrid();
+  this.generateSnakes();
 }
 
-function Snake(){
-  Game.call(this);
-  this.position = [];
-  this.body = [];
-  this.orientation = 0;
-}
-
-Snake.prototype = Object.create(Game.prototype);
-Snake.prototype.constructor = Snake;
-
-Game.prototype.getGrid = function(){
-  return getGrid();
+Game.prototype.generateGrid = function(){
+  var htmlGrid = "";
+  var rows = [];
+  for(x=0; x < this.rows; x++){
+    var cols = [];
+    for(y=0; y < this.columns; y++){
+      cols.push(null);
+      htmlGrid += '<div class="cell" row="' + x + '" column="' + y + '">';
+      htmlGrid += '</div>';
+    }
+    rows.push(cols);
+  }
+  this.grid = rows;
+  document.getElementById('gameGrid').innerHTML = htmlGrid;
+  return rows;
 };
 
-Snake.prototype.randomPosition = function(){
-  return randomPosition();
-}
 
-var game = new Game();
-var snake = new Snake();
-
-
-var gameGrid = "";
-function getGrid(){
-  var row = [];
-  for(x=0; x<10; x++){
-    var col = [];
-    for(y=0; y<10; y++){
-      col.push(null);
-      gameGrid += '<div class="cell" row="' + x + '" column="' + y + '">';
-      gameGrid += '</div>';
-    }
-    row.push(col);
+Game.prototype.generateSnakes = function() {
+  for(var i=0; i < this.numberOfSnakes; i++) {
+    this.snakes.push(new Snake());
   }
-  snake.grid = row;
-  document.getElementById('gameGrid').innerHTML = gameGrid;
-  return row;
+};
+
+Game.prototype.drawSnake = function() {
+  this.snakes[0].body.forEach( function(position, index) {
+    var selector = '[row=' + position.row + '][col=' + position.column + ']';
+    $(selector).addClass('snake');
+  });
+};
+
+// SNAKE CONSTRUCTOR //
+// ================= //
+function Snake() {
+  this.headPosition = [];
+  this.orientation = 0;
+  this.body = [];
+
 }
 
+Snake.prototype.body = function(){
+  for(var i=0; i<game.snakes.length; i++){
+    games.snakes[i].body = [
+      {}
+    ];
+  }
+};
 
-function randomPosition(){
-  var positionX = Math.floor(Math.random() * snake.grid.length);
-  var positionY = Math.floor(Math.random() * snake.grid[0].length);
-  var position = [];
-  position.push(positionX);
-  position.push(positionY);
-  snake.position = position;
-  snake.grid[position[0]][position[1]] = 1;
-  return position;
-}
+Snake.prototype.goLeft = function(){
+console.log("I'm going left");
+};
+
+Snake.prototype.goRight = function(){
+  console.log("I'm going right");
+};
+
+Snake.prototype.goForward = function(){
+  console.log("I'm going forward");
+};
