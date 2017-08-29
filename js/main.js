@@ -21,7 +21,8 @@ function setupControlPlayer1() {
         case ARROW_UP:
         game.snakes[0].goUp();
         break;
-  }});
+    }
+  }); 
 }
 
 // //Assign keys for directions of snake[0]
@@ -49,7 +50,7 @@ function setupControlPlayer1() {
 
 var game;
 $(document).ready(function () {
-  game = new Game(45, 50, 2);
+  game = new Game(45, 50, 1);
   setupControlPlayer1();
   //setupControlPlayer2();
 

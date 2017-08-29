@@ -9,7 +9,25 @@ function Game(rows, columns, numberOfSnakes){
 
   this.generateGrid();
   this.generateSnakes();
+  this.drawSnake();
 }
+
+Game.prototype.drawSnake = function() {
+  this.snakes[0].body.forEach(function(position, index, array) {
+    var selector = '[row=' + position.row + '][column=' + position.column + ']';
+    $(selector).addClass('snake');
+  });
+};
+
+Game.prototype.start = function(){
+  setInterval(this.update.bind(this), 100);
+};
+
+
+Game.prototype.update = function(){
+  this.snakes[0].moveForward(this.rows, this.columns);
+  this.drawSnake();
+};
 
 Game.prototype.generateGrid = function(){
   var htmlGrid = "";
@@ -35,12 +53,8 @@ Game.prototype.generateSnakes = function() {
   }
 };
 
-Game.prototype.drawSnake = function() {
-  this.snakes[0].body.forEach( function(position, index) {
-    var selector = '[row=' + position.row + '][col=' + position.column + ']';
-    $(selector).addClass('snake');
-  });
-};
+
+
 
 // SNAKE CONSTRUCTOR //
 // ================= //
@@ -52,16 +66,7 @@ function Snake() {
     {row: 6, column: 6},
     {row: 7, column: 6},
   ];
-
 }
-
-Snake.prototype.body = function(){
-  for(var i=0; i<game.snakes.length; i++){
-    games.snakes[i].body = [
-      {}
-    ];
-  }
-};
 
 Snake.prototype.goLeft = function(){
 console.log("I'm going left");
