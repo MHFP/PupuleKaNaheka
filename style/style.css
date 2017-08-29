@@ -27,13 +27,20 @@ body {
   height: 10px;
 }
 
-.cell[column="49"] {
+/*.cell[column="49"] {
   background-color: blue;
-}
+}*/
 
-.snake {
+.snake0 {
   border: 1px solid white;
   background-color: grey;
+  width: 10px;
+  height: 10px;
+}
+
+.snake1 {
+  border: 1px solid white;
+  background-color: red;
   width: 10px;
   height: 10px;
 }

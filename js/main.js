@@ -1,3 +1,15 @@
+// DOM CONTENT LOADED //
+// ================== //
+
+var game;
+$(document).ready(function () {
+  game = new Game(45, 50, 2);
+  setupControlPlayer1();
+  //setupControlPlayer2();
+
+  console.log(game);
+});
+
 //Assign keys for directions for player1/snake[0]
 var ARROW_LEFT = 37;
 var ARROW_RIGHT = 39;
@@ -22,7 +34,7 @@ function setupControlPlayer1() {
         game.snakes[0].goUp();
         break;
     }
-  }); 
+  });
 }
 
 // //Assign keys for directions of snake[0]
@@ -41,18 +53,3 @@ function setupControlPlayer1() {
 //         break;
 //   }});
 // }
-
-
-
-
-// DOM CONTENT LOADED //
-// ================== //
-
-var game;
-$(document).ready(function () {
-  game = new Game(45, 50, 1);
-  setupControlPlayer1();
-  //setupControlPlayer2();
-
-  console.log(game);
-});
