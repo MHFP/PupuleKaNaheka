@@ -90,3 +90,34 @@ Snake.prototype.goDown = function() {
     this.direction = 'down';
   }
 };
+
+Snake.prototype.moveForward = function(maxRows, maxColumns) {
+  var head = this.body[0];
+
+  switch(this.direction){
+    case 'up':
+      this.body.unshift({
+        row: (head.row - 1 + maxRows ) % maxRows,
+        column: head.column
+      });
+      break;
+    case 'down':
+      this.body.unshift({
+        row: (head.row + 1) % maxRows,
+        column: head.column
+      });
+      break;
+    case 'left':
+      this.body.unshift({
+        row: head.row,
+        column: (head.column - 1 + maxColumns) % maxColumns
+      });
+      break;
+    case 'right':
+      this.body.unshift({
+        row: head.row,
+        column: (head.column + 1) % maxColumns
+      });
+      break;
+  }
+};
