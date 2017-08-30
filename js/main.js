@@ -3,7 +3,7 @@
 
 var game;
 $(document).ready(function () {
-  game = new Game(45, 50, 4);
+  game = new Game(45, 50, 2);
   setupControlPlayer1();
   //setupControlPlayer2();
 

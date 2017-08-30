@@ -16,6 +16,34 @@ function Game(rows, columns, numberOfSnakes){
 }
 
 
+Game.prototype.update = function(){
+  for (var i = 0; i < this.snakes.length; i++) {
+    this.snakes[i].moveForward(this.rows, this.columns);
+
+    this.grid[this.snakes[i].head.row][this.snakes[i].head.column] = i;
+
+    if (this.snakes[i].hasEatenItself(i)){
+      if(this.intervalId) {
+        clearInterval(this.intervalId);
+        this.intervalId = undefined;
+      }
+      alert('🐍 Player ' + (i+1) + ", you lost, because you ate yourself 🤣");
+    }
+  }
+  if (this.snakes[0].collision1()){
+    alert('Player ' + 2 + ", you won!");
+    clearInterval(this.intervalId);
+    this.intervalId = undefined;
+  }
+  if (this.snakes[1].collision2()){
+    alert('Player ' + 1 + ", you won!");
+    clearInterval(this.intervalId);
+    this.intervalId = undefined;
+  }
+  this.draw();
+};
+
+
 
 Game.prototype.draw = function(){
   for (var i = 0; i < this.snakes.length; i++) {
@@ -34,23 +62,6 @@ Game.prototype.start = function(){
   }
 };
 
-
-Game.prototype.update = function(){
-  for (var i = 0; i < this.snakes.length; i++) {
-    this.snakes[i].moveForward(this.rows, this.columns);
-
-    this.grid[this.snakes[i].head.row][this.snakes[i].head.column] = i;
-
-    if (this.snakes[i].hasEatenItself()){
-      if(this.intervalId) {
-        clearInterval(this.intervalId);
-        this.intervalId = undefined;
-      }
-      alert('Game Over');
-    }
-  }
-  this.draw();
-};
 
 Game.prototype.generateGrid = function(){
   var htmlGrid = "";
@@ -92,6 +103,8 @@ function Snake() {
     {row: 0, column: 0}
   ];
   this.head ={row: 0, column: 0};
+
+  this.hasEatenItself();
 }
 
 
@@ -128,12 +141,31 @@ Snake.prototype.moveForward = function(maxRows, maxColumns) {
   this.head = head;
 };
 
-
-Snake.prototype.hasEatenItself = function(){
+Snake.prototype.collision1 = function(){
   var headRow = this.head.row;
   var headCol = this.head.column;
   var selector = '[row=' + headRow + '][column=' + headCol + ']';
-  if ($(selector).hasClass("snake0")){
+  if ($(selector).hasClass("snake" + 1)){
+    return true;
+  }
+};
+
+Snake.prototype.collision2 = function(){
+  var headRow = this.head.row;
+  var headCol = this.head.column;
+  var selector = '[row=' + headRow + '][column=' + headCol + ']';
+  if ($(selector).hasClass("snake" + 0)){
+    return true;
+  }
+};
+
+
+
+Snake.prototype.hasEatenItself = function(i){
+  var headRow = this.head.row;
+  var headCol = this.head.column;
+  var selector = '[row=' + headRow + '][column=' + headCol + ']';
+  if ($(selector).hasClass("snake" + i)){
     return true;
   }
 };
