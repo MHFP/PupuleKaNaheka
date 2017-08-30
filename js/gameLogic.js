@@ -1,3 +1,4 @@
+// ================ //
 // GAME CONSTRUCTOR //
 // ================ //
 function Game(rows, columns, numberOfSnakes){
@@ -10,19 +11,20 @@ function Game(rows, columns, numberOfSnakes){
 
   this.generateGrid();
   this.generateSnakes();
-  this.drawSnake();
   this.start();
+  this.draw();
 }
 
 
-Game.prototype.drawSnake = function() {
-  for(i=0; i < this.snakes.length; i++){
-    this.snakes[i].body.forEach(function(position, index, array) {
-      var selector = '[row=' + position.row + '][column=' + position.column + ']';
-      $(selector).addClass('snake' + [i]);
-    });
+
+Game.prototype.draw = function(){
+  var position = this.grid[this.snakes[0].head.row][this.snakes[0].head.column];
+  if (position === 1) {
+    var selector = '[row=' + this.snakes[0].head.row + '][column=' + this.snakes[0].head.column + ']';
+    $(selector).addClass("snake0");
   }
 };
+
 
 Game.prototype.start = function(){
   if(!this.intervalId) {
@@ -32,7 +34,10 @@ Game.prototype.start = function(){
 
 
 Game.prototype.update = function(){
+  console.log(this.snakes[0].head);
   this.snakes[0].moveForward(this.rows, this.columns);
+
+  this.grid[this.snakes[0].head.row][this.snakes[0].head.column] = 1;
 
   if (this.snakes[0].hasEatenItself()){
     if(this.intervalId) {
@@ -41,8 +46,8 @@ Game.prototype.update = function(){
     }
     alert('Game Over');
   }
-
-  this.drawSnake();
+  console.log(this.snakes[0].body);
+  this.draw();
 };
 
 Game.prototype.generateGrid = function(){
@@ -76,7 +81,7 @@ Game.prototype.generateSnakes = function() {
 
 
 
-
+// ================= //
 // SNAKE CONSTRUCTOR //
 // ================= //
 function Snake() {
@@ -84,49 +89,10 @@ function Snake() {
   this.body = [
     {row: 0, column: 0}
   ];
+  this.head ={row: 0, column: 0};
 }
 
 
-Snake.prototype.initialPosition = function(){
-  var row = 0; var col = 0;
-  row = Math.floor(Math.random() * game.grid.length);
-  col = Math.floor(Math.random() * game.grid.length);
-  this.body[0].row = row; this.body[0].column = col;
-};
-
-Snake.prototype.hasEatenItself = function(){
-  return this.body.some(function (element, index, array) {
-    return (element.row === array[0].row && element.column === array[0].column && index != 0);
-  });
-};
-
-Snake.prototype.goLeft = function(){
-console.log("I'm going left");
-if (this.direction === 'up' || this.direction === 'down'){
-    this.direction = 'left';
-  }
-};
-
-Snake.prototype.goRight = function(){
-  console.log("I'm going right");
-  if (this.direction === 'up' || this.direction === 'down'){
-    this.direction = 'right';
-  }
-};
-
-Snake.prototype.goUp = function(){
-  console.log("I'm going up");
-  if (this.direction === 'left' || this.direction === 'right'){
-    this.direction = 'up';
-  }
-};
-
-Snake.prototype.goDown = function() {
-  console.log("I'm going down");
-  if (this.direction === 'left' || this.direction === 'right'){
-    this.direction = 'down';
-  }
-};
 
 Snake.prototype.moveForward = function(maxRows, maxColumns) {
   var head = this.body[0];
@@ -156,5 +122,44 @@ Snake.prototype.moveForward = function(maxRows, maxColumns) {
         column: (head.column + 1) % maxColumns
       });
       break;
+  }
+  this.head = head;
+};
+
+
+Snake.prototype.hasEatenItself = function(){
+  var headRow = this.head.row;
+  var headCol = this.head.column;
+  var selector = '[row=' + headRow + '][column=' + headCol + ']';
+  if ($(selector).hasClass("snake0")){
+    return true;
+  }
+};
+
+Snake.prototype.goLeft = function(){
+  console.log("I'm going left");
+  if (this.direction === 'up' || this.direction === 'down'){
+    this.direction = 'left';
+  }
+};
+
+Snake.prototype.goRight = function(){
+  console.log("I'm going right");
+  if (this.direction === 'up' || this.direction === 'down'){
+    this.direction = 'right';
+  }
+};
+
+Snake.prototype.goUp = function(){
+  console.log("I'm going up");
+  if (this.direction === 'left' || this.direction === 'right'){
+    this.direction = 'up';
+  }
+};
+
+Snake.prototype.goDown = function() {
+  console.log("I'm going down");
+  if (this.direction === 'left' || this.direction === 'right'){
+    this.direction = 'down';
   }
 };
