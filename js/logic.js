@@ -6,11 +6,14 @@ function Game(rows, columns, numberOfSnakes){
   this.columns = columns;
   this.numberOfSnakes = numberOfSnakes;
   this.snakes = [];
+  this.speed = 100;
 
   this.generateGrid();
   this.generateSnakes();
   this.drawSnake();
+  this.start();
 }
+
 
 Game.prototype.drawSnake = function() {
   for(i=0; i < this.snakes.length; i++){
@@ -22,7 +25,9 @@ Game.prototype.drawSnake = function() {
 };
 
 Game.prototype.start = function(){
-  setInterval(this.update.bind(this), 100);
+  if(!this.intervalId) {
+    this.intervalId = setInterval(this.update.bind(this), this.speed);
+  }
 };
 
 
@@ -30,8 +35,11 @@ Game.prototype.update = function(){
   this.snakes[0].moveForward(this.rows, this.columns);
 
   if (this.snakes[0].hasEatenItself()){
+    if(this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = undefined;
+    }
     alert('Game Over');
-  //  $(this).stop(stopAll);
   }
 
   this.drawSnake();
@@ -77,6 +85,7 @@ function Snake() {
     {row: 0, column: 0}
   ];
 }
+
 
 Snake.prototype.initialPosition = function(){
   var row = 0; var col = 0;
