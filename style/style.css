@@ -11,7 +11,7 @@ body {
 }
 
 #gameGrid {
-  background-color: grey;
+  background-color: darkgrey;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -22,7 +22,7 @@ body {
 
 .cell {
   border: 1px solid white;
-  background-color: lightblue;
+  background-color: lightgrey;
   width: 10px;
   height: 10px;
 }
@@ -41,6 +41,20 @@ body {
 .snake1 {
   border: 1px solid white;
   background-color: red;
+  width: 10px;
+  height: 10px;
+}
+
+.snake2 {
+  border: 1px solid white;
+  background-color: seagreen;
+  width: 10px;
+  height: 10px;
+}
+
+.snake3 {
+  border: 1px solid white;
+  background-color: purple;
   width: 10px;
   height: 10px;
 }

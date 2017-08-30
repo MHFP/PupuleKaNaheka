@@ -18,10 +18,12 @@ function Game(rows, columns, numberOfSnakes){
 
 
 Game.prototype.draw = function(){
-  var position = this.grid[this.snakes[0].head.row][this.snakes[0].head.column];
-  if (position === 1) {
-    var selector = '[row=' + this.snakes[0].head.row + '][column=' + this.snakes[0].head.column + ']';
-    $(selector).addClass("snake0");
+  for (var i = 0; i < this.snakes.length; i++) {
+    var position = this.grid[this.snakes[i].head.row][this.snakes[i].head.column];
+    if (position === i) {
+      var selector = '[row=' + this.snakes[i].head.row + '][column=' + this.snakes[i].head.column + ']';
+      $(selector).addClass("snake" + i);
+    }
   }
 };
 
@@ -34,19 +36,19 @@ Game.prototype.start = function(){
 
 
 Game.prototype.update = function(){
-  console.log(this.snakes[0].head);
-  this.snakes[0].moveForward(this.rows, this.columns);
+  for (var i = 0; i < this.snakes.length; i++) {
+    this.snakes[i].moveForward(this.rows, this.columns);
 
-  this.grid[this.snakes[0].head.row][this.snakes[0].head.column] = 1;
+    this.grid[this.snakes[i].head.row][this.snakes[i].head.column] = i;
 
-  if (this.snakes[0].hasEatenItself()){
-    if(this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = undefined;
+    if (this.snakes[i].hasEatenItself()){
+      if(this.intervalId) {
+        clearInterval(this.intervalId);
+        this.intervalId = undefined;
+      }
+      alert('Game Over');
     }
-    alert('Game Over');
   }
-  console.log(this.snakes[0].body);
   this.draw();
 };
 
