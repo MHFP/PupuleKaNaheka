@@ -6,9 +6,25 @@ $(document).ready(function () {
   game = new Game(45, 50, 2);
   setupControlPlayer1();
   setupControlPlayer2();
-
+  startGame();
   console.log(game);
 });
+
+function startGame() {
+  $(".startButton").on('click', firstClick);
+  function firstClick(){
+    alert("Ready? Press 'Enter' to go!");
+    $(".startButton").off('click').on('click', secondClick);
+    game.start();
+    $(".startButton").toggleClass("resetButton");
+    $(".startButton").html("Reset");
+  }
+  function secondClick(){
+    $(".startButton").off('click').on('click', firstClick);
+    location.reload();
+  }
+}
+
 
 //Assign keys for directions for player1/snake[0]
 var ARROW_LEFT = 37;

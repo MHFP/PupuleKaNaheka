@@ -10,14 +10,22 @@ body {
   min-height: 100%;
 }
 
+.container{
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #gameGrid {
   background-color: darkgrey;
-  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   padding: 1em;
   width: 540px;
   height: 550px;
+  margin-top: 50px;
 }
 
 .cell {
@@ -45,16 +53,17 @@ body {
   height: 10px;
 }
 
-.snake2 {
-  border: 1px solid white;
-  background-color: seagreen;
-  width: 10px;
-  height: 10px;
+
+.startButton{
+  background-color: rgba(30, 90, 600, .4);
+  height: 50px;
+  width: 150px;
+  margin-top: 50px;
 }
 
-.snake3 {
-  border: 1px solid white;
-  background-color: purple;
-  width: 10px;
-  height: 10px;
+.resetButton{
+  background-color: lightgreen;
+  height: 50px;
+  width: 150px;
+  margin-top: 50px;
 }
