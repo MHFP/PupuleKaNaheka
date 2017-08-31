@@ -19,7 +19,7 @@ body {
 }
 
 #gameGrid {
-  background-color: darkgrey;
+  background-color: darkgreen;
   flex-direction: row;
   flex-wrap: wrap;
   padding: 1em;
@@ -29,7 +29,7 @@ body {
 }
 
 .cell {
-  border: 1px solid white;
+  border: 1px solid grey;
   background-color: lightgrey;
   width: 10px;
   height: 10px;
@@ -59,6 +59,8 @@ body {
   height: 50px;
   width: 150px;
   margin-top: 50px;
+  border-radius: 5%;
+  font-size: 1rem;
 }
 
 .resetButton{
@@ -66,4 +68,19 @@ body {
   height: 50px;
   width: 150px;
   margin-top: 50px;
+  border-radius: 5%;
+
+}
+
+main{
+  background-image: url(/Users/markus/Documents/DevProject/Ironhack/IndividualProjects/Game/resources/img/snakeBackGround.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.title{
+  font-family: sans-serif;
+  color: purple;
+  opacity: .7
 }
