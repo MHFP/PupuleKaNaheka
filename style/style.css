@@ -123,8 +123,9 @@ main{
   color: red;
 }
 
-.gameInstructions{
-  
+.instructions{
+  width: 700px;
+  position: fixed;
 }
 
 /*canvas {
