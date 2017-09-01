@@ -22,7 +22,7 @@ function startGame() {
     $(".startButton").html("Reset");
     $(".instructions").hide();
     $(".speed").hide();
-    $(".controls").hide();
+    $(".title").hide();
   }
   function secondClick(){
     $(".startButton").off('click').on('click', firstClick);
