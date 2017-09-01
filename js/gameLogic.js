@@ -28,7 +28,7 @@ Game.prototype.update = function(){
       }
       alert('🐍 Player ' + (i+1) + ", you lost, because you ate yourself 🤣");
     }
-    if (this.counter%9 === 0) {
+    if (this.counter%10 === 0) {
       this.grid[this.snakes[i].head.row][this.snakes[i].head.column] = null;
     }
   }
