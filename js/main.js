@@ -13,12 +13,12 @@ $(document).ready(function () {
 function startGame() {
   $(".startButton").on('click', firstClick);
   function firstClick(){
-    alert("Ready? Press 'Enter' to go!");
+    alert("Press 'Enter' to go!");
     $(".startButton").off('click').on('click', secondClick);
     game.start();
     $(".startButton").toggleClass("resetButton");
     $(".startButton").html("Reset");
-    $(".instructions").removeClass();
+    $(".instructions").hide();
 
   }
   function secondClick(){
