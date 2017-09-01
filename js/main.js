@@ -2,6 +2,7 @@
 // ================== //
 
 var game;
+
 $(document).ready(function () {
   game = new Game(45, 50, 2);
   setupControlPlayer1();
@@ -44,14 +45,6 @@ function setSpeed(){
     $(".showSpeed").html("Snakes on Speed");
   });
 }
-
-// //show speed-choice
-// function showSpeed(){
-//   if (true) {
-//
-//   }
-// }
-
 
 //Assign keys for directions for player1/snake[0]
 var ARROW_LEFT = 37;

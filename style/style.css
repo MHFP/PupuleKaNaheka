@@ -136,14 +136,17 @@ main{
 
 .options{
   flex-direction: column;
-  width: 100px;
+  width: 150px;
+  height: 100px;
   justify-content: space-around;
+  color: white;
+  font-family: sans-serif;
 }
 
 .options button{
   width: 120px;
-  height: 30px;
-  font-size: 0.7rem;
+  height: 40px;
+  font-size: 0.8rem;
   margin-top: 2%;
   background-color: rgba(177, 100, 255, 0.7);
   border-color: grey;
@@ -154,12 +157,15 @@ main{
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  width: 300px;
-  height: 150px;
+  width: 290px;
+  height: 130px;
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
+  border: thin solid purple;
+  border-top-right-radius: 5%;
+  border-bottom-right-radius: 5%;
 }
 
 .showSpeed{
@@ -169,4 +175,7 @@ main{
   color: white;
   font-family: sans-serif;
   text-align: center;
+  border: purple;
+  border-radius: 8%;
+  margin-right: 20px;
 }

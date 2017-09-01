@@ -17,10 +17,8 @@ function Game(rows, columns, numberOfSnakes){
 
 
 Game.prototype.update = function(){
-
   for (var i = 0; i < this.snakes.length; i++) {
     this.snakes[i].moveForward(this.rows, this.columns);
-
     this.grid[this.snakes[i].head.row][this.snakes[i].head.column] = i;
 
     if (this.snakes[i].hasEatenItself(i)){
@@ -33,7 +31,6 @@ Game.prototype.update = function(){
     if (this.counter%9 === 0) {
       this.grid[this.snakes[i].head.row][this.snakes[i].head.column] = null;
     }
-
   }
   if (this.snakes[0].collision1()){
     alert('Player ' + 2 + ", you won!");
@@ -45,8 +42,6 @@ Game.prototype.update = function(){
     clearInterval(this.intervalId);
     this.intervalId = undefined;
   }
-
-
   this.draw();
   this.counter ++;
 };
