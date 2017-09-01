@@ -20,6 +20,8 @@ function startGame() {
     $(".startButton").toggleClass("resetButton");
     $(".startButton").html("Reset");
     $(".instructions").hide();
+    $(".speed").hide();
+    $(".controls").hide();
   }
   function secondClick(){
     $(".startButton").off('click').on('click', firstClick);
