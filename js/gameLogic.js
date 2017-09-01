@@ -11,12 +11,13 @@ function Game(rows, columns, numberOfSnakes){
 
   this.generateGrid();
   this.generateSnakes();
-  // this.start();
   this.draw();
+  this.counter = 0;
 }
 
 
 Game.prototype.update = function(){
+
   for (var i = 0; i < this.snakes.length; i++) {
     this.snakes[i].moveForward(this.rows, this.columns);
 
@@ -29,6 +30,10 @@ Game.prototype.update = function(){
       }
       alert('🐍 Player ' + (i+1) + ", you lost, because you ate yourself 🤣");
     }
+    if (this.counter%9 === 0) {
+      this.grid[this.snakes[i].head.row][this.snakes[i].head.column] = null;
+    }
+
   }
   if (this.snakes[0].collision1()){
     alert('Player ' + 2 + ", you won!");
@@ -40,7 +45,10 @@ Game.prototype.update = function(){
     clearInterval(this.intervalId);
     this.intervalId = undefined;
   }
+
+
   this.draw();
+  this.counter ++;
 };
 
 
@@ -52,6 +60,7 @@ Game.prototype.draw = function(){
       var selector = '[row=' + this.snakes[i].head.row + '][column=' + this.snakes[i].head.column + ']';
       $(selector).addClass("snake" + i);
     }
+
   }
 };
 
@@ -158,7 +167,6 @@ Snake.prototype.collision2 = function(){
     return true;
   }
 };
-
 
 
 Snake.prototype.hasEatenItself = function(i){
