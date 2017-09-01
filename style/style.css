@@ -83,9 +83,15 @@ main{
 
 .title{
   font-family: sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
   color: black;
   background-color: rgba(177, 100, 255, 0.5);
+  height: 80px;
+}
 
+.title h2{
+  font-size: 1rem;
 }
 
 .controls{
@@ -126,4 +132,41 @@ main{
 .instructions{
   width: 700px;
   position: fixed;
+}
+
+.options{
+  flex-direction: column;
+  width: 100px;
+  justify-content: space-around;
+}
+
+.options button{
+  width: 120px;
+  height: 30px;
+  font-size: 0.7rem;
+  margin-top: 2%;
+  background-color: rgba(177, 100, 255, 0.7);
+  border-color: grey;
+}
+
+.speed{
+  background-color: rgba(177, 100, 255, 0.7);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 300px;
+  height: 150px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.showSpeed{
+  width: 100px;
+  height: 50px;
+  background-color: purple;
+  color: white;
+  font-family: sans-serif;
+  text-align: center;
 }

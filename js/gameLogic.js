@@ -7,12 +7,12 @@ function Game(rows, columns, numberOfSnakes){
   this.columns = columns;
   this.numberOfSnakes = numberOfSnakes;
   this.snakes = [];
-  this.speed = 70;
+  this.speed = 100;
+  this.counter = 0;
 
   this.generateGrid();
   this.generateSnakes();
   this.draw();
-  this.counter = 0;
 }
 
 

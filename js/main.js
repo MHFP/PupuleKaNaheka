@@ -7,6 +7,7 @@ $(document).ready(function () {
   setupControlPlayer1();
   setupControlPlayer2();
   startGame();
+  setSpeed();
   console.log(game);
 });
 
@@ -19,13 +20,35 @@ function startGame() {
     $(".startButton").toggleClass("resetButton");
     $(".startButton").html("Reset");
     $(".instructions").hide();
-
   }
   function secondClick(){
     $(".startButton").off('click').on('click', firstClick);
     location.reload();
   }
 }
+
+//Set speed options
+function setSpeed(){
+  $(".snail").on('click', function(){
+    game.speed = 200;
+    $(".showSpeed").html("Snaily Snakes");
+  });
+  $(".moderate").on('click', function(){
+    game.speed = 100;
+    $(".showSpeed").html("Moderate");
+  });
+  $(".speedy").on('click', function(){
+    game.speed = 50;
+    $(".showSpeed").html("Snakes on Speed");
+  });
+}
+
+// //show speed-choice
+// function showSpeed(){
+//   if (true) {
+//
+//   }
+// }
 
 
 //Assign keys for directions for player1/snake[0]
